@@ -1,8 +1,6 @@
 #pragma once
 
 /*
-  Neo Ring Display library, controls any neopixel ring and shows time, bars and other information on them
-
   Copyright (c) 2017 Purple Wolf Ltd. All rights reserved.
 
   This library is free software; you can redistribute it and/or
@@ -24,7 +22,7 @@
 #include <Particle.h>
 
 // neopixels control library
-#include <neopixel.h> // https://github.com/technobly/Particle-NeoPixel/blob/master/README.md
+#include <neopixel.h> // https://github.com/technobly/Particle-NeoPixel
 
 #define MAIN_RING_PIXEL_TYPE    WS2812B
 #define MAIN_RING_PIXELS_COUNT  24
