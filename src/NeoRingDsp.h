@@ -24,10 +24,6 @@
 // neopixels control library
 #include <neopixel.h> // https://github.com/technobly/Particle-NeoPixel
 
-#define MAIN_RING_PIXEL_TYPE    WS2812B
-#define MAIN_RING_PIXELS_COUNT  24
-#define MAIN_RING_CONTROL_PIN   D6
-
 #define MAIN_RING_CLOCK_PRECISE 255
 
 class NeoRingDsp
@@ -36,13 +32,14 @@ public:
 
   enum NeoRingDspMode
   {
-    mrm_off   = 1,
-    mrm_clock = 2
+    nrd_off   = 1,
+    nrd_clock = 2
   };
 
-  NeoRingDsp();
+  // Constructor: number of LEDs, pin number, LED type
+  NeoRingDsp(uint16_t _px_cnt, uint8_t _pin, uint8_t _type);
 
-  void begin();
+  void begin(); 
 
   void set_work_mode(const NeoRingDspMode _val);
 
@@ -58,7 +55,9 @@ private:
 
   void show_clock();
 
-  NeoRingDspMode      m_work_mode;
+  NeoRingDspMode    m_work_mode;
+
+  uint8_t           m_pixel_count;
 
   uint8_t           m_clock_shift;
 

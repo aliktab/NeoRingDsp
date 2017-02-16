@@ -18,10 +18,12 @@
 
 #include "NeoRingDsp.h"
 
-NeoRingDsp::NeoRingDsp() :
-  m_neo_pixel(MAIN_RING_PIXELS_COUNT, MAIN_RING_CONTROL_PIN, MAIN_RING_PIXEL_TYPE)
+NeoRingDsp::NeoRingDsp(uint16_t _px_cnt, uint8_t _pin, uint8_t _type) :
+  m_neo_pixel(_px_cnt, _pin, _type)
 {
-  m_work_mode   = mrm_off;
+  m_work_mode   = nrd_off;
+
+  m_pixel_count = _px_cnt;
 
   m_clock_shift = 0;
 
@@ -64,11 +66,11 @@ void NeoRingDsp::process()
 
   switch (m_work_mode)
   {
-    case mrm_clock:
+    case nrd_clock:
       show_clock();
       break;
 
-    case mrm_off:
+    case nrd_off:
     default:
       m_neo_pixel.clear();
       m_neo_pixel.show();
@@ -96,29 +98,29 @@ void NeoRingDsp::show_clock()
   uint32_t val[] =
   {
     (m_cur_seconds * 1000 + m_cur_millis)
-                   * MAIN_RING_PIXELS_COUNT * MAIN_RING_CLOCK_PRECISE / 60,
-     m_cur_minutes * MAIN_RING_PIXELS_COUNT * MAIN_RING_CLOCK_PRECISE / 60,
-     m_cur_hours   * MAIN_RING_PIXELS_COUNT * MAIN_RING_CLOCK_PRECISE / 24
+                   * m_pixel_count * MAIN_RING_CLOCK_PRECISE / 60,
+     m_cur_minutes * m_pixel_count * MAIN_RING_CLOCK_PRECISE / 60,
+     m_cur_hours   * m_pixel_count * MAIN_RING_CLOCK_PRECISE / 24
   };
   val[0]  = val[0] / 1000;
   val[1] += val[0] / 60;
   val[2] += val[1] / 24;
 
-  uint8_t pix[3][MAIN_RING_PIXELS_COUNT];
+  uint8_t pix[3][m_pixel_count];
   memset(pix, 0, sizeof(pix));
 
   for (int i = 0; i < 3; i++)
   {
     uint16_t cur = val[i] / MAIN_RING_CLOCK_PRECISE;
     uint16_t lvl = val[i] - cur * MAIN_RING_CLOCK_PRECISE;
-    cur = (cur + m_clock_shift) % MAIN_RING_PIXELS_COUNT;
-    uint16_t nxt = (cur + 1) % MAIN_RING_PIXELS_COUNT;
+    cur = (cur + m_clock_shift) % m_pixel_count;
+    uint16_t nxt = (cur + 1) % m_pixel_count;
 
     pix[i][cur] += MAIN_RING_CLOCK_PRECISE - lvl;
     pix[i][nxt] += lvl;
   }
 
-  for (int i = 0; i < MAIN_RING_PIXELS_COUNT; i++)
+  for (int i = 0; i < m_pixel_count; i++)
     m_neo_pixel.setColor(i, pix[0][i], pix[1][i], pix[2][i]);
 
   m_neo_pixel.show();
