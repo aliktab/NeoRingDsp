@@ -22,7 +22,7 @@
 #include <Particle.h>
 
 // neopixels control library
-#include <neopixel.h> // https://github.com/technobly/Particle-NeoPixel
+#include <NeoPixel.h> // https://github.com/technobly/Particle-NeoPixel
 
 #define MAIN_RING_CLOCK_PRECISE 255
 
@@ -39,7 +39,7 @@ public:
   // Constructor: number of LEDs, pin number, LED type
   NeoRingDsp(uint16_t _px_cnt, uint8_t _pin, uint8_t _type);
 
-  void begin(); 
+  void begin();
 
   void set_work_mode(const NeoRingDspMode _val);
 
