@@ -1,7 +1,7 @@
 #pragma once
 
 /*
-  Copyright (c) 2017 Purple Wolf Ltd. All rights reserved.
+  Copyright (C) 2014 Alik <aliktab@gmail.com> All rights reserved.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
