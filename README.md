@@ -1,6 +1,6 @@
 # NeoRingDsp
 
-A Particle library for NeoRingDsp
+A Particle library for Neopixel Rings
 
 ## Welcome to your library!
 
@@ -20,8 +20,8 @@ Connect any NeoPixel Ring hardware, add the NeoRingDsp library to your project a
 
 ```
 #define PIXEL_TYPE    WS2812B // for possible values see NeoPixel library: https://github.com/technobly/Particle-NeoPixel
-#define PIXELS_COUNT  24
-#define CONTROL_PIN   D6
+#define PIXELS_COUNT  24      // number of pixels in the ring
+#define CONTROL_PIN   D6      // perticle pin, connected to the first pixel
 
 NeoRingDsp neoRingDsp(PIXELS_COUNT, CONTROL_PIN, PIXEL_TYPE);
 
