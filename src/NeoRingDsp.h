@@ -22,7 +22,7 @@
 #include <Particle.h>
 
 // neopixels control library
-#include <NeoPixel.h> // https://github.com/technobly/Particle-NeoPixel
+#include <neopixel.h> // https://github.com/technobly/Particle-NeoPixel
 
 #define MAIN_RING_CLOCK_PRECISE 255
 
@@ -43,7 +43,7 @@ public:
 
   void set_work_mode(const NeoRingDspMode _val);
 
-  void set_clock_shift(const uint8_t _val);
+  void set_pixel_shift(const uint8_t _val);
 
   void set_brightness(const uint8_t _val);
 
@@ -59,7 +59,7 @@ private:
 
   uint8_t           m_pixel_count;
 
-  uint8_t           m_clock_shift;
+  uint8_t           m_pixel_shift;
 
   uint8_t           m_mem_seconds;
   uint32_t          m_mem_millis;

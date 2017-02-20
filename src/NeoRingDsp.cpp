@@ -25,7 +25,7 @@ NeoRingDsp::NeoRingDsp(uint16_t _px_cnt, uint8_t _pin, uint8_t _type) :
 
   m_pixel_count = _px_cnt;
 
-  m_clock_shift = 0;
+  m_pixel_shift = 0;
 
   m_mem_seconds = 0;
   m_mem_millis  = 0;
@@ -48,9 +48,9 @@ void NeoRingDsp::set_work_mode(const NeoRingDspMode _val)
   m_work_mode = _val;
 }
 
-void NeoRingDsp::set_clock_shift(const uint8_t _val)
+void NeoRingDsp::set_pixel_shift(const uint8_t _val)
 {
-  m_clock_shift = _val;
+  m_pixel_shift = _val;
 }
 
 void NeoRingDsp::set_brightness(uint8_t _val)
@@ -113,7 +113,7 @@ void NeoRingDsp::show_clock()
   {
     uint16_t cur = val[i] / MAIN_RING_CLOCK_PRECISE;
     uint16_t lvl = val[i] - cur * MAIN_RING_CLOCK_PRECISE;
-    cur = (cur + m_clock_shift) % m_pixel_count;
+    cur = (cur + m_pixel_shift) % m_pixel_count;
     uint16_t nxt = (cur + 1) % m_pixel_count;
 
     pix[i][cur] += MAIN_RING_CLOCK_PRECISE - lvl;
