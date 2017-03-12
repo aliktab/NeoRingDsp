@@ -23,6 +23,7 @@ Connect any NeoPixel Ring hardware, add the NeoRingDsp library to your project a
 #define PIXELS_COUNT  24      // number of pixels in the ring
 #define CONTROL_PIN   D6      // perticle pin, connected to the first pixel
 
+// Initialize objects from the lib
 NeoRingDsp neoRingDsp(PIXELS_COUNT, CONTROL_PIN, PIXEL_TYPE);
 
 void setup() {

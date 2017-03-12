@@ -18,15 +18,18 @@
 
 #include "NeoRingDsp.h"
 
+#define PIXEL_TYPE    WS2812B // for possible values see NeoPixel library: https://github.com/technobly/Particle-NeoPixel
+#define PIXELS_COUNT  24      // number of pixels in the ring
+#define CONTROL_PIN   D6      // perticle pin, connected to the first pixel
+
 // Initialize objects from the lib
-NeoRingDsp neoRingDsp;
+NeoRingDsp neoRingDsp(PIXELS_COUNT, CONTROL_PIN, PIXEL_TYPE);
 
 void setup() {
-    // Call functions on initialized library objects that require hardware
-    neoRingDsp.begin();
+  neoRingDsp.begin();
+  neoRingDsp.set_work_mode(NeoRingDsp::nrd_clock); // use nrd_clock to show current time on Ring similar to regular clock
 }
 
 void loop() {
-    // Use the library's initialized objects and functions
-    neoRingDsp.process();
+  neoRingDsp.process(); // get current values from sensors and show them on ring
 }
