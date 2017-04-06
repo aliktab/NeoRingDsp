@@ -36,9 +36,10 @@ public:
     nrd_clock = 2
   };
 
-  // Constructor: number of LEDs, pin number, LED type
-  NeoRingDsp(uint16_t _px_cnt, uint8_t _pin, uint8_t _type);
+  // сonstructor: number of LEDs, pin number, LED type
+  NeoRingDsp(uint16_t _px_cnt, uint16_t _pin, uint8_t _type);
 
+  // initialize interface and neopixel object
   void begin();
 
   void set_work_mode(const NeoRingDspMode _val);

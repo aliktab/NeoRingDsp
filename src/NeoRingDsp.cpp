@@ -18,7 +18,7 @@
 
 #include "NeoRingDsp.h"
 
-NeoRingDsp::NeoRingDsp(uint16_t _px_cnt, uint8_t _pin, uint8_t _type) :
+NeoRingDsp::NeoRingDsp(uint16_t _px_cnt, uint16_t _pin, uint8_t _type) :
   m_neo_pixel(_px_cnt, _pin, _type)
 {
   m_work_mode   = nrd_off;
