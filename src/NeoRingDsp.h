@@ -19,10 +19,12 @@
 */
 
 // this will load the definition for common Particle variable types
-#include <Particle.h>
+#include <application.h>
+
 
 // neopixels control library
 #include <neopixel.h> // https://github.com/technobly/Particle-NeoPixel
+
 
 #define MAIN_RING_CLOCK_PRECISE 255
 
